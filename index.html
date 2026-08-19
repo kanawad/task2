@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillCraft Tech - Stopwatch Web Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="circle-graphic top-left"></div>
+    <div class="circle-graphic bottom-right"></div>
+    <div class="dots-graphic"></div>
+
+    <div class="stopwatch-wrapper">
+        <div class="task-badge-frame">
+            <span class="task-text">TASK 02</span>
+        </div>
+
+        <header class="app-header">
+            <div class="icon-container">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                    <line x1="12" y1="2" x2="12" y2="4"></line>
+                </svg>
+            </div>
+            <h1>STOPWATCH<br><span class="subtitle">WEB APPLICATION</span></h1>
+        </header>
+
+        <div class="timer-display" id="mainDisplay">
+            00:00:00<span class="ms-delimiter">.</span><span class="ms-display" id="msDisplay">00</span>
+        </div>
+
+        <div class="controls-grid">
+            <button id="btnAction" class="btn btn-start">Start</button>
+            <button id="btnLap" class="btn btn-lap" disabled>Lap</button>
+            <button id="btnReset" class="btn btn-reset">Reset</button>
+        </div>
+
+        <div class="lap-board">
+            <div class="lap-board-header">
+                <span>RECORDS</span>
+                <span id="lapCounter" class="lap-count-badge">0 Laps</span>
+            </div>
+            <ul class="lap-list" id="lapList">
+                </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

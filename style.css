@@ -1,0 +1,279 @@
+/* Custom properties mapping the slide's digital palette */
+:root {
+    --bg-gradient: linear-gradient(135deg, #0d121a 0%, #151d2a 100%);
+    --card-bg: rgba(26, 35, 50, 0.45);
+    --border-color: rgba(255, 255, 255, 0.06);
+    --accent-teal: #00f2fe;
+    --accent-teal-glow: rgba(0, 242, 254, 0.35);
+    --task-coral: #ff4a5a;
+    --text-primary: #ffffff;
+    --text-muted: #718096;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Slide Mockup Background Graphics */
+.circle-graphic {
+    position: absolute;
+    border: 3px solid rgba(0, 242, 254, 0.04);
+    border-radius: 50%;
+    z-index: 0;
+}
+.circle-graphic.top-left {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    left: -100px;
+    border-color: rgba(0, 242, 254, 0.08);
+}
+.circle-graphic.bottom-right {
+    width: 450px;
+    height: 450px;
+    bottom: -150px;
+    right: -150px;
+}
+.dots-graphic {
+    position: absolute;
+    bottom: 40px;
+    right: 60px;
+    width: 80px;
+    height: 50px;
+    opacity: 0.15;
+    background-image: radial-gradient(var(--accent-teal) 1.5px, transparent 1.5px);
+    background-size: 10px 10px;
+    z-index: 0;
+}
+
+/* Master Dashboard Card */
+.stopwatch-wrapper {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    width: 100%;
+    max-width: 440px;
+    border-radius: 24px;
+    padding: 40px 35px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    text-align: center;
+    z-index: 10;
+}
+
+/* Slide Specific Task Badge Component */
+.task-badge-frame {
+    border: 1.5px solid var(--task-coral);
+    padding: 5px 22px;
+    display: inline-block;
+    margin-bottom: 25px;
+    position: relative;
+}
+.task-badge-frame::before, .task-badge-frame::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--task-coral);
+}
+.task-badge-frame::before { top: -2px; left: -2px; }
+.task-badge-frame::after { bottom: -2px; right: -2px; }
+
+.task-text {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: var(--text-primary);
+}
+
+/* Header Elements */
+.app-header {
+    margin-bottom: 35px;
+}
+.icon-container {
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 8px var(--accent-teal-glow));
+}
+h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    line-height: 1.4;
+}
+.subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    font-weight: 400;
+}
+
+/* Monospace Timer Core Engine UI */
+.timer-display {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 52px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin-bottom: 40px;
+    user-select: none;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+.ms-delimiter {
+    color: var(--accent-teal);
+}
+.ms-display {
+    font-size: 36px;
+    color: var(--accent-teal);
+    font-weight: 400;
+    text-shadow: 0 0 12px var(--accent-teal-glow);
+}
+
+/* Context Control Layout */
+.controls-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 14px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.btn-start {
+    background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+    box-shadow: 0 4px 15px rgba(0, 131, 176, 0.3);
+}
+.btn-start:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 131, 176, 0.45);
+}
+
+/* State Variant: Pause State Triggered from JS */
+.btn-pause {
+    background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%) !important;
+    box-shadow: 0 4px 15px rgba(255, 88, 88, 0.3) !important;
+}
+.btn-pause:hover {
+    box-shadow: 0 6px 20px rgba(255, 88, 88, 0.45) !important;
+}
+
+.btn-lap:not(:disabled):hover, .btn-reset:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Lap Management Subsystem Board */
+.lap-board {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 25px;
+    text-align: left;
+}
+
+.lap-board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.lap-count-badge {
+    background: rgba(0, 242, 254, 0.1);
+    color: var(--accent-teal);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+}
+
+.lap-list {
+    list-style: none;
+    max-height: 180px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+/* Custom Scrollbar configuration for dark themes */
+.lap-list::-webkit-scrollbar {
+    width: 4px;
+}
+.lap-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+}
+.lap-list::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-teal);
+}
+
+.lap-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid transparent;
+    font-family: monospace;
+    font-size: 14px;
+    animation: slideIn 0.25s ease-out forwards;
+}
+
+.lap-item:first-child {
+    border-color: rgba(0, 242, 254, 0.15);
+    background: rgba(0, 242, 254, 0.02);
+}
+
+.lap-index {
+    color: var(--accent-teal);
+    font-weight: bold;
+}
+
+.lap-timestamp {
+    color: var(--text-primary);
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
